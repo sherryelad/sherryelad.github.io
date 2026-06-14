@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home Exercise 1 - Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 40px;
+      color: #222;
+    }
+
+    .container {
+      max-width: 850px;
+      margin: 0 auto;
+      background: white;
+      padding: 28px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    }
+
+    h1 {
+      margin-top: 0;
+      color: #1f4e79;
+      text-align: center;
+    }
+
+    .calculator {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    input,
+    select,
+    button {
+      font-size: 20px;
+      padding: 10px;
+      border: 1px solid #aaa;
+      border-radius: 6px;
+    }
+
+    input {
+      width: 160px;
+    }
+
+    button {
+      cursor: pointer;
+      font-weight: bold;
+      background: #1f4e79;
+      color: white;
+      border: none;
+      min-width: 55px;
+    }
+
+    button:hover {
+      background: #163a5a;
+    }
+
+    #result {
+      background: #eef3f8;
+      font-weight: bold;
+    }
+
+    .message {
+      margin-top: 18px;
+      text-align: center;
+      font-size: 18px;
+      min-height: 26px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Home Exercise 1 - Simple Calculator</h1>
+
+    <div class="calculator">
+      <input type="number" id="num1" placeholder="First number" />
+
+      <select id="operator">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">*</option>
+      </select>
+
+      <input type="number" id="num2" placeholder="Second number" />
+
+      <button onclick="calculate()">=</button>
+
+      <input type="text" id="result" placeholder="Result" readonly />
+    </div>
+
+    <div id="message" class="message"></div>
+  </div>
+
+  <script>
+    function calculate() {
+      const number1 = parseFloat(document.getElementById("num1").value);
+      const number2 = parseFloat(document.getElementById("num2").value);
+      const operator = document.getElementById("operator").value;
+
+      const resultBox = document.getElementById("result");
+      const message = document.getElementById("message");
+
+      if (isNaN(number1) || isNaN(number2)) {
+        resultBox.value = "";
+        message.textContent = "Please enter two valid numbers.";
+        return;
+      }
+
+      let result;
+
+      if (operator === "+") {
+        result = number1 + number2;
+      } else if (operator === "-") {
+        result = number1 - number2;
+      } else if (operator === "*") {
+        result = number1 * number2;
+      }
+
+      resultBox.value = result;
+      message.textContent = `${number1} ${operator} ${number2} = ${result}`;
+    }
+  </script>
+</body>
+</html>
